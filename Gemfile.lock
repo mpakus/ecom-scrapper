@@ -68,6 +68,7 @@ DEPENDENCIES
   awesome_print
   dotenv
   mechanize
+  nokogiri
   rspec (~> 3.6)
   rubocop (~> 0.49)
 
