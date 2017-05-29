@@ -15,6 +15,6 @@ catalogue_root = page.fetch(ENV['CATALOGUE_ROOT_URL'])
 
 doc = Nokogiri::HTML(catalogue_root)
 
-doc.css('.cat-header > p > a').each do |link|
+doc.css('a[gid]').each do |link|
   ap link
 end
