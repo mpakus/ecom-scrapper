@@ -2,6 +2,7 @@
 
 require 'mechanize'
 
+# Login user and return auth cookie
 class Login
   def initialize(url, login, password, cookie, ua)
     @url = url
