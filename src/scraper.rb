@@ -3,7 +3,7 @@
 require 'json'
 
 # Main Application
-class App
+class Scraper
   def initialize(page, root_url)
     @page = page
     @root_url = root_url
