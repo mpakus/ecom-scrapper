@@ -9,7 +9,8 @@ require_relative 'src/scraper'
 
 Dotenv.load('environment.env')
 
-cookie = Login.new(ENV['LOGIN_URL'], ENV['LOGIN'], ENV['PSW'], ENV['AUTH_COOKIE'], ENV['UA']).cookie
-page = Page.new(cookie, ENV['UA'])
+logger = ENV['DEBUG'] ? Logger.new('logs/development.log') : nil
+cookie = Login.new(ENV['LOGIN_URL'], ENV['LOGIN'], ENV['PSW'], ENV['AUTH_COOKIE'], ENV['UA'], logger).cookie
+page = Page.new(cookie, ENV['UA'], logger)
 
 Scraper.new(page, ENV['CATALOGUE_ROOT_URL']).run

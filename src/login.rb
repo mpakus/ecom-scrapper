@@ -4,12 +4,13 @@ require 'mechanize'
 
 # Login user and return auth cookie
 class Login
-  def initialize(url, login, password, cookie, ua)
+  def initialize(url, login, password, cookie, ua, logger = nil)
     @url = url
     @login = login
     @password = password
     @cookie = cookie
     @ua = ua
+    @logger = logger
   end
 
   def cookie
@@ -23,7 +24,7 @@ class Login
       agent.open_timeout = 60
       agent.read_timeout = 60
       agent.follow_meta_refresh = true
-      agent.log = Logger.new('logs/login.log')
+      agent.log = @logger if @logger
       agent.user_agent = @ua
     end
     scraper.history_added = proc { sleep 0.5 }

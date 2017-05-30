@@ -4,14 +4,16 @@ require 'net/http'
 
 # Fetch pages
 class Page
-  def initialize(cookie, ua)
+  def initialize(cookie, ua, logger = nil)
     @cookie = cookie
     @ua = ua
+    @logger = logger
   end
 
   def fetch(url, method = :get, params = {})
     uri = URI(url)
     http = Net::HTTP.new(uri.host, 80)
+    http.set_debug_output(@logger) if @logger
     request = method == :get ? get(uri) : post(uri, params)
     request['Cookie'] = @cookie.to_s
     request['User-Agent'] = @ua
