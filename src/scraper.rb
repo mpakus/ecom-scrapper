@@ -30,13 +30,13 @@ class Scraper
     letter = []
     doc.css('li > a').each do |link|
       puts "- #{link.text} - #{link.attr('href')}"
-      letter << [ {text: text, gid: gid} ] + parse_brand(link.text, link.attr('href'))
+      letter << [{ text: text, gid: gid }] + parse_brand(link.text, link.attr('href'))
     end
     letter
   end
 
   def parse_brand(text, href)
-    path = [{ text: text, href: href }]# + parse_tree(text, href)
+    path = [{ text: text, href: href }] # + parse_tree(text, href)
     path
   end
 
